@@ -8,7 +8,7 @@
 #### Lab 11 ####
 
 
-### Nmap ### 
+## Nmap ## 
  * Zenmap -> GUI Nmap
  * ``` nmap -O <IP Range - Ex: 10.10.10.*> ``` -> OS Fingerprinting
    * Ports / Hosts found
@@ -49,7 +49,7 @@
    * ``` nmap -D RND:X <IP> ``` -> Random X Decoys (Ex. 10 Decoys > X=10)
      * In the target machine, it will appear as the packets are coming from different IP addresses
   
-#### NetScan Tools Pro #### 
+## NetScan Tools Pro ## 
  * Manual Tools
     * ARP Ping -> Ping an IPv4 address on the subnet (Option - Send Broadcast ARP, then Unicast ARP)
     * ARP Scan (MAC Scan) -> Find all active IPv4 devices on the subnet
