@@ -12,7 +12,7 @@
 Zenmap -> GUI Nmap
 
 #### OS Fingerprinting #### 
-* ``` nmap -O <IP Range - Ex: 10.10.10.*> ``` -> OS Fingerprinting
+* ``` nmap -O <IP Range - Ex: 10.10.10.*> ```
   * Ports / Hosts found
   * Topology
   * Services found
