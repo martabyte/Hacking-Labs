@@ -66,7 +66,7 @@ Shows local Drives, Connections, Users, Groups, Printers, Shares, Sessions, Open
 
 ## LDAP Enumeration ##
 #### Active Directory Explorer (ADExplorer) ####
-Shows: DC (Domain User details), CN (). Allows to change the 'Attribute' values of users.
+Shows: DC (Domain User details), CN (**TODO**). Allows to change the 'Attribute' values of users.
 
 
 ## Windows / SMB enumeration ##
