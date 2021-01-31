@@ -22,6 +22,7 @@ Zenmap -> GUI Nmap
  
 #### Slow Comprehensive Scan #### 
 ``` nmap -sS -sU -T4 -A -v -PE -PP -PS80,443 -PA3389 -PU40125 -PY -g 53 --script "default or (discovery and safe)" <IP host>  ``` 
+
 **_[ TO DO ]_** Does it generate automatically from the results obtained before? So it personalizes the command?
 (Takes 15/20 minutes to run)
    
@@ -30,9 +31,9 @@ Zenmap -> GUI Nmap
 
 #### NULL Scan #### 
  * 'Profile Editor'
-  * 'TCP Scan: Null Scan (-sN)'
-  * 'Timing Template: Aggressive (-T4)'
-  * - [x] 'Enable all advanced/aggressive options(-A)'
+   * 'TCP Scan: Null Scan (-sN)'
+   * 'Timing Template: Aggressive (-T4)'
+   * - [x] 'Enable all advanced/aggressive options(-A)'
   
 ``` nmap -sN -T4 -A <IP> ```
  * RST -> _Closed_
@@ -44,11 +45,11 @@ Zenmap -> GUI Nmap
 #### XMAS Scan #### 
 ``` nmap -sX -T4 <IP host> ``` 
  * Linux
-  * No response -> *Open*
-  * RST -> *Closed*
+   * No response -> *Open*
+   * RST -> *Closed*
  * Windows
-  * RST -> *Open* and *Closed*
-  * When the firewall is enabled -> No response: Nmap will show all ports as *'Open|Filtered'*.
+   * RST -> *Open* and *Closed*
+   * When the firewall is enabled -> No response: Nmap will show all ports as *'Open|Filtered'*.
  
 #### ACK Flag Scan #### 
 ``` nmap -sA -v -T4 <IP> ``` - Displays port disposition.
