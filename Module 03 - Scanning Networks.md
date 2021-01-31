@@ -4,9 +4,13 @@
 UDP and TCP Packet crafting
 
 ``` hping3 -c X <IP> ``` - Only send X packets
+
 ``` hping3 --scan 1-3000 -S <IP> ``` - SYN Scan to ports 1-3000
+
 ``` hping3 <IP> --udp --rand-source --data 500 ``` - UDP Scan with random source IP(?) and Len=500
+
 ``` hping3 -S <IP> -p 80 -c 5 ``` - SYN Scan to port 80 and sending 5 packets
+
 ``` hping3 <IP> --flood ``` - Flooding the target
 
 
