@@ -112,7 +112,29 @@ Scanning Network Traffic going through a computer's adapter
  * Ping Scanner - Scans for alive hosts on the network
  
 
-## Wireshark ##
+## Wireshark ##
+To analyze TTL and Window Sizes for OS Fingerprinting
+
+ 1. ``` ping <IP> ``` from the target machine
+ 2. In Wireshark: Select the packet
+ 3. 'Internet Protocol Version 4' header -> TTL Header
+ 4. ``` nmap -sT <IP> ``` from the target machine [[ **TODO** - Comprobar ]]
+ 5. 'Transport Layer Protocol' header -> Window size
+ 
+OS | TTL | TCP Window Size
+| :---: | :---: | :---:
+Linux (Kernel 2.4 and 2.6) | 64 | 5840
+Google Linux | 64 | 5720
+FreeBSD | 64 | 65535
+OpenBSD | 64 | 16384
+Windows 95 | 32 | 8192
+Windows 2000 | 128 | 16384
+Windows XP | 128 | 65535
+Windows Vista and 7 (Server 2008) | 128 | 8192
+iOS 12.4 (Cisco Routers) | 255 | 4128
+Solaris 7 | 255 | 8760
+AIX 4.3 | 64 | 16384
+
 
 
 
