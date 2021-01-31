@@ -1,7 +1,33 @@
 # Module 03 - Scanning Networks #
-#### Lab 01 ####
-#### Lab 02 ####
-#### Lab 03 ####
+
+## Hping3 ##
+UDP and TCP Packet crafting
+
+``` hping3 -c X <IP> ``` - Only send X packets
+``` hping3 --scan 1-3000 -S <IP> ``` - SYN Scan to ports 1-3000
+``` hping3 <IP> --udp --rand-source --data 500 ``` - UDP Scan with random source IP(?) and Len=500
+``` hping3 -S <IP> -p 80 -c 5 ``` - SYN Scan to port 80 and sending 5 packets
+``` hping3 <IP> --flood ``` - Flooding the target
+
+
+## Colasoft Packet Builder ##
+Scanning the network
+
+1. Add > ARP Packet - 0.1 Delta Second
+2. Fields can be changed
+3. Send All Packets - Burst Mode (No delay between packets)
+4. Export All Packets - Can be opened in Wireshark
+
+
+## Mega Ping ##
+Basic network troubleshooting. Has options for Ping, Traceroute, Whois, IP Scanner, NetBIOS Scanner, Port Scanner...
+
+#### IP Scanner ####
+To scan for active hosts. Any host can be clicked and select for instance 'Traceroute' and see the route to the destination.
+
+#### Port Scanner ####
+Port Scanning on the target host(s).
+
 
 ## Nmap ## 
 Zenmap -> GUI Nmap
@@ -71,12 +97,14 @@ Zenmap -> GUI Nmap
 ``` nmap -D RND:X <IP> ``` -> Random X Decoys (Ex. 10 Decoys > X=10)
  * In the target machine, it will appear as the packets are coming from different IP addresses
   
+  
 ## NetScan Tools Pro ## 
 #### Manual Tools #### 
  * ARP Ping -> Ping an IPv4 address on the subnet (Option - Send Broadcast ARP, then Unicast ARP)
  * ARP Scan (MAC Scan) -> Find all active IPv4 devices on the subnet
  * Ping Scanner -> Results can be seen in the browser (Option - Use Default System DNS)
  * Port Scanner 
+
 
 ## SolarWinds Network Topology Mapper ##
 To draw network diagrams.
@@ -90,6 +118,7 @@ To draw network diagrams.
 #### Establish a Remote Desktop Connection ####
 Right-Click on the node and select: 'Integration with Windows Tools' > 'Remote Desktop'
 (It also has options for Ping, Telnet and Traceroute)
+
 
 ## Angry IP Scanner ##
 Checking for Live systems
