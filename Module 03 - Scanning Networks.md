@@ -83,3 +83,39 @@ Zenmap -> GUI Nmap
  * Ping Scanner -> Results can be seen in the browser (Option - Use Default System DNS)
  * Port Scanner 
 
+## SolarWinds Network Topology Mapper ##
+To draw network diagrams.
+
+ * New Scan + Configure Password
+ * SNMP Credentials
+   * Stored Credentials -> Private
+   * Discovery Credentials -> Public
+ * Network Selection > IP Range
+ 
+#### Establish a Remote Desktop Connection ####
+Right-Click on the node and select: 'Integration with Windows Tools' > 'Remote Desktop'
+(It also has options for Ping, Telnet and Traceroute)
+
+## Angry IP Scanner ##
+Checking for Live systems
+
+ * Ping Method: Combined UDP+TCP
+ * Display: Alive Hosts (Responding to Ping)
+
+
+## IP Tools ##
+Scanning Network Traffic going through a computer's adapter
+
+ * Name Scanner - Enumerates all system names
+ * Port Scanner - Scans for open ports in all hosts
+ * UDP Scanner - Scans for open UDP ports in all hosts
+ * Ping Scanner - Scans for alive hosts on the network
+ 
+
+## Wireshark ##
+
+
+
+
+
+
