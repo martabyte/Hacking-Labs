@@ -1,6 +1,6 @@
 # Module 04 - Enumeration #
 
-## NetBIOS Enumeration ##
+## NetBIOS Enumeration ##
 #### Global Network Inventory Scanner ####
 ``` New Audit Wizard > IP Range Scan > Connect as the current logged on user / Connect as a different user (Administrator) ```
 
@@ -8,7 +8,7 @@ After the scan is done, you can select the IP and see all different information 
 
 
 ## Enumerating Network Resources ##
-#### Advanced IP Scanner ####
+#### Advanced IP Scanner ####
 Specify range to scan (Ex. 10.10.10.1-254). Shows all live hosts in the network. It shows IP Address, MAC Address and Manufacturer information. It also shows details like Web Server information and Shares. It can shutdown a remote machine.
 
 #### SuperScan ####
@@ -51,7 +51,7 @@ Shows local Drives, Connections, Users, Groups, Printers, Shares, Sessions, Open
 
 
 ## SNMP Enumeration ##
-#### Nmap ####
+#### Nmap ####
 ``` nmap -sU -p 161 <IP> ``` - SNMP Enumeration (Port 161 UDP)
 
 ``` nmap -sU -p 161 --script=snmp-brute <IP> ``` - Script that will extract the SNMP community string from the target machine
