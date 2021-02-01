@@ -338,29 +338,29 @@ Now, the information is saved in Metasploit. If we wanted to see the list of liv
 
 #### Port Scanning using MSF Modules ####
 * SYN Scan
- 1. ``` search portscan ```
- 2. ``` use auxiliary/scanner/portscan/syn ```
- 3. ``` set INTERFACE <Interface - Ex. eth0> ```, ``` set PORTS <Target Port> ```, ``` set RHOSTS <Target IP or Range - Ex. 10.10.10.5-21> ```, ``` set THREADS <Concurrent Threads - Ex. 50> ```
- 4. ``` exploit ```
+  1. ``` search portscan ```
+  2. ``` use auxiliary/scanner/portscan/syn ```
+  3. ``` set INTERFACE <Interface - Ex. eth0> ```, ``` set PORTS <Target Port> ```, ``` set RHOSTS <Target IP or Range - Ex. 10.10.10.5-21> ```, ``` set THREADS <Concurrent Threads - Ex. 50> ```
+  4. ``` exploit ```
  
 * TCP Scan
- 1. ``` back ```
- 2. ``` use auxiliary/scanner/portscan/tcp ```
- 3. ``` hosts -R ``` - To automatically set the RHOSTS option with the discovered hosts in the Information Gathering phase.
- 4. ``` exploit ```
+  1. ``` back ```
+  2. ``` use auxiliary/scanner/portscan/tcp ```
+  3. ``` hosts -R ``` - To automatically set the RHOSTS option with the discovered hosts in the Information Gathering phase.
+  4. ``` exploit ```
  
 #### OS Version Discovery ####
 * SMB Version Scan
- 1. ``` back ```
- 2. ``` use auxiliary/scanner/smb/smb_version ```
- 3. ``` set RHOSTS <Target IP Range> ```, ``` set THREADS 11 ```
- 4. ``` exploit ```
+  1. ``` back ```
+  2. ``` use auxiliary/scanner/smb/smb_version ```
+  3. ``` set RHOSTS <Target IP Range> ```, ``` set THREADS 11 ```
+  4. ``` exploit ```
 
 * FTP Version Identification
- 1. ``` back ```
- 2. ``` use auxiliary/scanner/ftp/ftp_version ```
- 3. ``` set RHOSTS <Target IP (where port 21 has been identified)> ```
- 4. ``` exploit ```
+  1. ``` back ```
+  2. ``` use auxiliary/scanner/ftp/ftp_version ```
+  3. ``` set RHOSTS <Target IP (where port 21 has been identified)> ```
+  4. ``` exploit ```
 
 #### Export Scan Result ####
 ``` hosts -o <Output Path - CSV File> ```
