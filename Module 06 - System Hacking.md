@@ -3,8 +3,8 @@
 ## Dumping and Cracking SAM Hashes to Extract Plaintext Passwords ##
 1. ``` cmd ``` > Run as Administrator
 2. ``` wmic useraccount get name,sid ```
-  * Administrator -> XXX-500
-  * Guest -> XXX-501
+   * Administrator -> XXX-500
+   * Guest -> XXX-501
   
 ### pwdump7 ###
 
@@ -24,11 +24,11 @@ Then, if any user account names are missing, complete them looking at the result
 
 ### Winrtgen ###
 1. Add Table
-  * Hash -> 'ntlm'
-  * Min Len -> 4
-  * Max Len -> 6
-  * Chain Count -> 4000000
-  * Charset -> 'loweralpha' (Depends on the password)
+   * Hash -> 'ntlm'
+   * Min Len -> 4
+   * Max Len -> 6
+   * Chain Count -> 4000000
+   * Charset -> 'loweralpha' (Depends on the password)
 2. 'Ok' -> It will generate the Rainbow Table
 
 ### Rainbow Crack ###
