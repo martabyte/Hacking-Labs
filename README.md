@@ -1,1 +1,1 @@
-# Ethical Hacking Labs #
+# Ethical Hacking #
