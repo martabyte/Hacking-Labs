@@ -365,3 +365,20 @@ Now, the information is saved in Metasploit. If we wanted to see the list of liv
 #### Export Scan Result ####
 ``` hosts -o <Output Path - CSV File> ```
 
+- - - -
+
+## Extra - Tools and Techniques ##
+
+Category | Tools 
+| :---: | :---
+Frameworks | Kali Linux, Parrot OS, Backtrack5 R3, Security Onion
+Reconnaissance | Smartwhois, MxToolbox, CentralOps, dnsstuff, nslookup, DIG, Netcraft
+Discovery | Angry IP Scanner, Colasoft Ping Tool, Nmap, Maltego, NetResident, LanSurveyor, OpManager
+Port Scanning | Nmap, MegaPing, Hping3, Netscan Tools Pro, Advanced Port Scanner
+Service Fingerprinting | Xprobe, Nmap, Zenmap
+Enumeration | Superscan, NetBIOS Enumerator, SnmpCheck, onesixtyone, Jxplorer, Hyena, DumpSec, WinFingerprint, Ps Tools, NsAuditor, Enum4Linux, nslookup, Netscan
+Scanning | Nessus, GFI Languard, Retina, SAINT, Nexpose
+Password Cracking | Ncrack, Cain & Abel, LC5, Ophcrack, pwdump7, fgdump, John the Ripper, Rainbow Crack
+Sniffing | Wireshark, Ettercap, Capsa Network Analyzer
+MiTM Attacks | Cain & Abel, Ettercap
+Exploitation | Metasploit, Core Impact
