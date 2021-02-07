@@ -11,3 +11,52 @@
 
 
 - - - -
+
+## Analyzing a Network ##
+
+### Capsa Network Analyzer ###
+Select the network adapter > 'Start'
+
+
+- - - - 
+
+## Spoofing MAC Addresses ##
+
+### SMAC ###
+1. Choose the network adapter
+2. Specify a new MAC Address or choose 'Random'
+3. Select 'IPConfig' to look at the IPConfig information
+4. Click on 'Update MAC' to change the MAC Address
+
+
+- - - -
+
+## MiTM Attack ##
+
+### Cain & Abel ###
+1. Configure > Sniffer > Select the Adapter
+2. Start the Sniffer
+3. In the 'Sniffer' section, go to the 'APR' tab
+4. Perform ARP Poisoning selecting the targets
+5. When the victim inputs any password, for instance an ftp connection password, it will appear in the tab 'Passwords'
+
+
+- - - -
+
+## Detecting ARP Poisoning in a Switch-Based Network ##
+
+``` hping3 <IP> -c <N of packets - Ex. 10000> ``` - The victim machine pings the other ARP-poisoned machine
+
+In the attacker machine, open Wireshark:
+1. Preferences
+2. Select the Protocol: 'ARP/RARP' > Select the option 'Detect duplicate IP address configuration'
+3. Start capturing packets
+4. In the menu bar: 'Analyze' > 'Expert Info' - Warning messages will appear: 'Duplicate IP address configured'
+
+
+- - - - 
+
+## Detecting ARP Attacks ##
+
+### XArp Tool ###
+Set the Security Level to 'Aggressive' - Whenever an ARP Poisoning attack is detected, it will pop-up an alert.
