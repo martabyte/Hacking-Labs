@@ -34,5 +34,9 @@ To perform a Dictionary Attack against an FTP service.
 
 ### Uniscan ###
 ``` uniscan -u <URL> -q ``` - The switch _-q_ is to enable directory checks.
+
 ``` uniscan -u <URL> -we ``` - The switch _-w_ and _-e_ used together is to enable file check, robots.txt and sitemap.xml check.
+
 ``` uniscan -u <URL> -d ``` - The switch _-d_ is to perform a dynamic scan. It can find vulnerabilities like SQL Injection, XSS, RCE, RFI...
+
+In `/usr/share/uniscan/report` there will be the scan report for the URL in an _html_ file.
