@@ -41,7 +41,7 @@ It will detect the Trojan and stop the upload.
 
 ## Implementing DoS Attack on Linux Cloud Server ##
 
-### Slowloris Script ###
+### Slowloris Script ###
 1. Go to the Slowloris folder (``` cd Desktop/Slowloris/ ```)
 2. Change the permissions to the main file ``` chmod 777 Slowloris.pl ```
 3. Perform the DoS attack: ``` ./Slowloris.pl -dns <Target IP> ```
