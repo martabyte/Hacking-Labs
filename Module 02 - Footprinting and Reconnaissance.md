@@ -8,10 +8,122 @@ To gather:
 * Network Information - Domains, sub-domains, network blocks, network topologies, trusted routers, firewalls, IPs, Whois record, DNS records...
 * System Information - OS, Web Servers OS, user accounts and passwords...
 
+The tools are found at: `Module 02 Footprinting and Reconnaissance`.
+
 ## Footprinting through Search Engines ##
+### Advanced Google Hacking Techniques ###
+* intitle:
+* site:
+* filetype:
+* cache:
+* allinurl:
+* inurl:
+* allintitle:
+* inanchor:
+* link:
+* related:
+* info:
+* location:
+
+### Video Search Engines ###
+* https://citizenevidence.amnestyusa.org/ -> Paste a Youtube video and get details such as Topic Abstract, ID, Upload Date and Time...
+* Google Videos (https://video.google.com)
+* Yahoo Videos (https://video.search.yahoo.com)
+* Yahoo Images (https://images.search.yahoo.com)
+* EZGif (https://EZGif.com)
+* VideoReverser (https://videoreverser.com)
+* TinEye Reverse Image Search (https://tineye.com)
+
+### FTP Search Engines ###
+* NAPALM FTP Indexer (https://www.searchftps.net)
+* Global FTP Search Engine (https://globalfilesearch.com)
+* FreewareWeb FTP File Search (https://freewareweb.com)
+ 
+### IoT Search Engines ###
+* Shodan (https://www.shodan.io)
+* Censys (https://censys.io)
+* Thingful (https://www.thingful.net)
+
+
 ## Footprinting through Web Services ##
+### Netcraft ###
+### PeekYou Online People Search Service ###
+### theHarvester ###
+### Deep and Dark Web Searching ###
+### Passive Footprinting to Determine the Target OS ###
+
+
 ## Footprinting through Social Networking Sites ##
+### theHarvester ###
+### Sherlock ###
+### Followerwonk ###
+
+
 ## Perform Website Footprinting ##
+### Ping ###
+### Website Informer ###
+### Web Data Extractor ###
+### HTTrack Web Site Copier ###
+### CeWL ###
+
+
+## Perform Email Footprinting ##
+### eMailTrackerPro ###
+
+
+## Perform Whois Footprinting ##
+### DomainTools ###
+
+
+## Perform DNS Footprinting ##
+### nslookup ###
+### Reverse IP Domain Check and DNSRecon ###
+
+
+## Perform Network Footprinting ##
+### Network Range ###
+### Network Tracerouting ###
+#### Path Analyzer Pro ####
+Options:
+* Protocol
+  * ICMP
+  * UDP
+  * Source Port
+  * Tracing Mode
+* Advanced Probe Details
+  * Length of Packet
+  * Lifetime
+  * Type-of-Service
+  * Maximum TTL
+  * Initial SEQ Number
+* Advanced Tracing Details
+  * Work-ahead Limit
+  * Minimum Scatter
+  * Prbes per TTL
+  * Stop on Control Messages (ICMP)
+  
+Results:
+* Report
+* Synopsis
+* Charts
+* Geo
+* Log
+* Stats
+
+
+## Perform Footprinting using Various Footprinting Tools ##
+### Recon-ng ###
+### Maltego ###
+### OSRFramework ###
+### FOCA ###
+### BillCipher ###
+### OSINT Framework ###
+
+
+
+
+
+
 
 ## Open Source Information Gathering ##
 
