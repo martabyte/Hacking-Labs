@@ -153,24 +153,65 @@ To gather a wordlist from a target website.
 
 ` cewl -d <depth - ex. 2> -m <min word length - ex. 5> -w <output file> <URL> `
 
+### Firebug ###
+Firefox browser > 'Firebug' extension
+
+  * Inspector
+  * Console
+  * Debugger
+  * Style Editor
+  * Performance
+  * Memory
+  * Network
+  * DOM
+
 
 ## Perform Email Footprinting ##
+Email Footprinting allows you to collect information such as IP Addresses, mail servers, OS details, geolocation, service providers... This kind of tracking is possible through digitally time-stamped records that reveal the time and date when the target receives and opens a specific email.
+
 ### eMailTrackerPro ###
+'View' > 'My Trace Reports' > 'New Email Trace' > 'Trace Headers' > 'Trace an email I have received', Paste the header of the email - To trace suspicious emails
+
+### Other Email Tracking Tools ###
+* Infoga (GitHub)
+* Mailtrack (https://mailtrack.io)
 
 
 ## Perform Whois Footprinting ##
-### DomainTools ###
+* DomainTools (http://whois.domaintools.com)
+* SmartWhois (https://tamos.com)
+* Batch IP Converter (http://www.sabsoft.com)
 
 
 ## Perform DNS Footprinting ##
 ### nslookup ###
+```
+nslookup
+set type=<a, cname, any...>
+<domain>
+```
+### Other DNS Lookup Tools ###
+* Nslookup Online Utility (http://www.kloth.net/services/nslookup.php)
+* Professional Toolset (https://tools.dnsstuff.com)
+* DNS Records (https://network-tools.com)
+
 ### Reverse IP Domain Check and DNSRecon ###
+* You Get Signal (https://www.yougetsignal.com > 'Reverse IP Domain Check')
+* Dnsrecon (Command Line - `dnsrecon -r <IP/IP Range (X-X)>`)
 
 
 ## Perform Network Footprinting ##
 ### Network Range ###
+* ARIN Whois Database Search Tool (https://arin.net/about/welcome/region)
+
 ### Network Tracerouting ###
+#### Traceroute ####
+* `tracert <URL>` (Windows)
+* `traceroute <URL>` (Linux)
+
 #### Path Analyzer Pro ####
+It can be found at: `Module 02 Footprinting and Reconnaissance\Traceroute Tools\`.
+
 Options:
 * Protocol
   * ICMP
@@ -197,31 +238,153 @@ Results:
 * Log
 * Stats
 
+#### Other Network Tracerouting Tools ####
+* VisualRoute (http://visualroute.com)
+* Traceroute NG (https://www.solarwinds.com)
+
 
 ## Perform Footprinting using Various Footprinting Tools ##
 ### Recon-ng ###
+Web reconnaissance framework with independent modules and database interaction that provides an environment to perform web-based reconnaissance.
+
+* Network Reconnaissance:
+  ```
+  recon-ng
+  > help
+  > marketplace install all (To install all modules)
+  > modules search
+  > workspaces 
+  > workspaces create CEH
+  > workspaces list
+  > db insert domains
+   > domain: <desired domain>
+   > notes: <any notes>
+  > show domains
+  > modules load brute (To look for modules that contain 'brute')
+  > modules load recon/domains-hosts/brute_hosts (To harvest hosts-related information)
+  > run
+  ```
+
+  Other modules such as Netcraft or Bing can be used to harvest more hosts:
+  ```
+  > back
+  > modules load recon/domains-hosts/bing_domain_web
+  > run
+  ```
+
+  To perform a reverse lookup for each IP Address obtained during the reconnaissance:
+  ```
+  > back
+  > modules load reverse_resolve
+  > modules load recon/hosts-hosts/reverse_resolve
+  > run
+  > show hosts (To show all harvested hosts so far)
+  ```
+
+  To generate a report:
+  ```
+  > back
+  > modules load reporting
+  > modules load reporting/html
+  > options set FILENAME <path>/results.html
+  > options set CREATOR <Name>
+  > options set CUSTOMER <Domain Name / Name of the Client>
+  > run
+  ```
+
+* Gather Personnel Information
+  To obtain the contacts related to the domains:
+  ```
+  recon-ng
+  > workspaces create reconnaissance
+  > modules load recon/domains-contacts/whois_pocs
+  > info
+  > options set SOURCE facebook.com (Sets facebook.com as the target domain)
+  ```
+  
+  Validate the existence of usernames on specific websites:
+  ```
+  > back
+  > modules load recon/profiles-profiles/namechk
+  > options set SOURCE MarkZuckerberg (To look for the username MarkZuckerberg)
+  > run
+  ```
+  
+  To find the existence of user-profiles on various websites
+  ```
+  > back
+  > modules load recon/profiles-profiles/profiler
+  > options set SOURCE MarkZuckerberg (To look for the username on various websites)
+  > run
+  ```
+
 ### Maltego ###
+Footprinting tool used to gather maximum information. It provides a library of transforms to discover data from open sources and visualizes that information in a graph format, suitable for link analysis and data mining.
+
+It can be found at: `(Parrot) Applications > Pentesting > Information Gathering > Maltego > 'Maltego CE'`. To register a Maltego CE account: 'https://www.maltego.com/ce-registration'.
+
+'Right Click' > 'All Transform' > Select the desired options.
+
 ### OSRFramework ###
+OSRFramework is a set of libraries that are used to perform Open Source Intelligence tasks. They include references to many different applications related to username checking, DNS lookups, information leaks research, deep web search... It provides a way of making queries graphically as well as several interfaces to interact with such as OSRFConsole or a Web Interface.
+
+It can be downloaded: `git clone https://github.com/i3visio/osrframework`. Or in Windows at: `Module 02 Footprinting and Reconnaissance\GitHub Tools\`.
+
+```
+pip3 install osrframework
+pip3 install osrframework --upgrade
+usufy.py -n <username> -p <target platforms - ex. twitter facebook youtube> (To check the existence of a profile of a user in target platforms)
+domainfy.py -n <domain name - ex. eccouncil> -t all (Find existing domains using words and nicknames)
+searchfy.py (Gather information about the users on social networking pages)
+mailfy.py (Gather information about email accounts)
+phonefy.py (Check for the existence of aa given series of phones)
+entify.py (Extract entities using regular expressions from provided URLs)
+```
+
 ### FOCA ###
+FOCA (Fingerprinting Organizations with Collected Archives) is a tool that reveals metadata and shrouded data. It looks for records in Search Engines and examines a wide mixture of records, with the most widely recognized being Microsoft Office, Open Office or PDF documents. 
+
+It can be found at: `Module 02 Footprinting and Reconnaissance\Footprinting Tools\FOCA\bin`.
+
 ### BillCipher ###
+BillCipher is an information gathering tool for a website or IP address. It can gather information such as DNS Lookup, Whois Lookup, GeoIP Lookup, Subnet Lookup, Port Scanner, Page Links, Zone Transfer, HTTP Header...
+
+It can be downloaded: `git clone https://github.com/GitHackTools/BillCipher`. Or in Windows at: `Module 02 Footprinting and Reconnaissance\GitHub Tools\`.
+
+```
+python3 billcipher.py
+> website/IP
+> <target website or IP>
+
+  1) DNS Lookup
+  2) Whois Lookup
+  3) GeoIP Lookup
+  4) Subnet Lookup
+  5) Port Scanner
+  6) Page Links
+  7) Zone Transfer
+  8) HTTP Header
+  9) Host Finder
+  10) IP-Locator
+  11) Find Shared DNS Servers
+  12) Get Robots.txt
+  13) Host DNS Finder
+  14) Reverse IP Lookup
+  15) Email Gathering (Infoga)
+  16) Subdomain Listing (Sublist3r)
+  17) Find Admin Login Site (Breacher)
+  18) Check and Bypass CloudFare (HatCloud)
+  19) Website Copier (HTTrack)
+  20) Host Info Scanner (WhatWeb)
+  21) About
+  22) Fuck Out Of Here (Exit)
+
+> <Number - Type of information to collect>
+> Yes (To continue extracting information)
+```
+
 ### OSINT Framework ###
+OSINT Framework is an open-source intelligence gathering framework that helps in performing automated footprinting and reconnaissance, OSINT research, and intelligence gathering. It is focused on gathering information from free tools or resources. (It is like a list of available online tools)
 
-
-
-
-- - - -
-
-## Collecting Information About a Target Website ##
-
-### Firebug ###
-Firefox browser > 'Firebug' extension
-
-  * Inspector
-  * Console
-  * Debugger
-  * Style Editor
-  * Performance
-  * Memory
-  * Network
-  * DOM
+https://osintframework.com/
 
