@@ -31,7 +31,7 @@ Nmap is a utility used for network discovery, network administration and securit
 **Address Mask Ping Scan** - ``` nmap -sn -PM <IP> ``` - Useful to determine whether the target host is live specifically when administrators block ICMP traffic.
 
 **TCP SYN Ping Scan** - ``` nmap -sn -PS <IP> ``` - ACK response -> Host is active.
-
+ 
 **TCP ACK Ping Scan** - ``` nmap -sn -PA <IP> ``` - RST response -> Host is active.
 
 **IP Protocol Ping Scan** - ``` nmap -sn -PO <IP> ``` - Sends different probe packets of different IP protocols. Any response -> Host is alive.
