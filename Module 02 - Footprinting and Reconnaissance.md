@@ -387,4 +387,3 @@ python3 billcipher.py
 OSINT Framework is an open-source intelligence gathering framework that helps in performing automated footprinting and reconnaissance, OSINT research, and intelligence gathering. It is focused on gathering information from free tools or resources. (It is like a list of available online tools)
 
 https://osintframework.com/
-
