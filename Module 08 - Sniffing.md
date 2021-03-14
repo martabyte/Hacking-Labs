@@ -1,28 +1,26 @@
 # Module 08 - Sniffing #
 
-## Sniffing Passwords ##
+## Perform Active Sniffing ##
 
-### Wireshark ###
-``` http.request.method=="POST" ```
+### Perform MAC Flooding ###
+#### Macof ####
 
-* To capture remote traffic in Windows (rdp) -> 'Services' > 'Remote Packet Capture' > Start
-    * In Wireshark:
-        * 'Capture' > 'Options' > 'Manage Interfaces' > 'Remote Interfaces' > 'Add Button' > Select the host, port and credentials
+### Perform DHCP Starvation Attack ###
+#### Yersinia ####
+
+### Perform a MiTM Attack ###
+#### Cain & Abel ####
+1. Configure > Sniffer > Select the Adapter
+2. Start the Sniffer
+3. In the 'Sniffer' section, go to the 'APR' tab
+4. Perform ARP Poisoning selecting the targets
+5. When the victim inputs any password, for instance an ftp connection password, it will appear in the tab 'Passwords'
 
 
-- - - -
+### Spoof a MAC Address ###
+#### TMAC ####
 
-## Analyzing a Network ##
-
-### Capsa Network Analyzer ###
-Select the network adapter > 'Start'
-
-
-- - - - 
-
-## Spoofing MAC Addresses ##
-
-### SMAC ###
+#### SMAC ####
 1. Choose the network adapter
 2. Specify a new MAC Address or choose 'Random'
 3. Select 'IPConfig' to look at the IPConfig information
@@ -31,20 +29,30 @@ Select the network adapter > 'Start'
 
 - - - -
 
-## MiTM Attack ##
+## Perform Network Sniffing ##
 
-### Cain & Abel ###
-1. Configure > Sniffer > Select the Adapter
-2. Start the Sniffer
-3. In the 'Sniffer' section, go to the 'APR' tab
-4. Perform ARP Poisoning selecting the targets
-5. When the victim inputs any password, for instance an ftp connection password, it will appear in the tab 'Passwords'
+### Password Sniffing ###
+#### Wireshark ####
+``` http.request.method=="POST" ```
+
+* To capture remote traffic in Windows (rdp) -> 'Services' > 'Remote Packet Capture' > Start
+    * In Wireshark:
+        * 'Capture' > 'Options' > 'Manage Interfaces' > 'Remote Interfaces' > 'Add Button' > Select the host, port and credentials
+
+### Analyze a Network ###
+#### Capsa Network Analyzer ####
+Select the network adapter > 'Start'
+
+#### Omnipeek Network Protocol Analyzer ####
+
+#### SteelCentrak Packet Analyzer ####
 
 
-- - - -
+- - - - 
 
-## Detecting ARP Poisoning in a Switch-Based Network ##
+## Detect Network Sniffing ##
 
+### Detect ARP Poisoning in a Switched-Based Network ###
 ``` hping3 <IP> -c <N of packets - Ex. 10000> ``` - The victim machine pings the other ARP-poisoned machine
 
 In the attacker machine, open Wireshark:
@@ -54,9 +62,14 @@ In the attacker machine, open Wireshark:
 4. In the menu bar: 'Analyze' > 'Expert Info' - Warning messages will appear: 'Duplicate IP address configured'
 
 
-- - - - 
-
-## Detecting ARP Attacks ##
-
-### XArp Tool ###
+### Detect ARP Attacks ###
+#### Xarp ####
 Set the Security Level to 'Aggressive' - Whenever an ARP Poisoning attack is detected, it will pop-up an alert.
+
+
+### Detect Promiscuous Mode ###
+#### Nmap ####
+
+#### NetScan Tools Pro ####
+
+
