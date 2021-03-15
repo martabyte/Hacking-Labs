@@ -1,7 +1,7 @@
 # Module 10 - Denial-of-Service #
+Denial-of-Service is an attack on a computer or network that reduces, restricts or prevents accessibility of system resources to its legitimate users.
 
 ## SYN Flooding a Target ##
-
 ### Metasploit ###
 ``` msfconsole ```
 
@@ -13,21 +13,23 @@
 ``` hping3 -S <Target IP> -a <Spoofed Source IP> -p <Target Port> --flood ``` - '-S' sets the TCP SYN flag 
 
 
-- - - -
-
-## Distributed Denial-of-Service Attack ##
-
+## Performing Distributed Denial-of-Service Attacks ##
 ### High Orbit Ion Cannon (HOIC) ###
 1. Set the Target, set the Power bar to 'High', select the Booster 'GenericBoost.hoic', and click 'Add'
 2. Set the nº of threads - Ex. 20
 3. Do the same on as many machines as you can
 4. 'Fire Teh Lazer!'
 
+### Low Orbit Ion Cannon (LOIC) ###
+
 
 ### Other DoS/DDoS Tools ###
+* HULK 
+* R-U-Dead-Yet 
+* Tsunami 
+* Moihack Port-Flooder
 
-#### Low Orbit Ion Cannon (LOIC) ####
-#### HULK ####
-#### R-U-Dead-Yet ####
-#### Tsunami ####
-#### Moihack Port-Flooder ####
+- - - -
+
+## Detect and Protect Against DoS and DDoS Attacks ##
+### Anti DDoS Guardian ###
