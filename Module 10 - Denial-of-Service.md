@@ -23,7 +23,7 @@ Denial-of-Service is an attack on a computer or network that reduces, restricts 
 ### Low Orbit Ion Cannon (LOIC) ###
 
 
-### Other DoS/DDoS Tools ###
+## Other DoS/DDoS Tools ##
 * HULK 
 * R-U-Dead-Yet 
 * Tsunami 
