@@ -33,11 +33,26 @@ It can be found at: `Module 13 Hacking Web Servers\Web Server Footprinting Tools
 Enter the URL, Query the Server, and it will provide you with the Server info it returns.
 
 ### Netcat ###
+```
+nc -vv <URL> <Port>
+> GET / HTTP/1.0
+```
 
 ### Telnet ###
+```
+telnet <URL> <Port>
+> GET / HTTP/1.0
+```
 
 ## Enumerating a Web Server ##
 ### Nmap ###
+`nmap -sV --script=http-enum <URL>` 
+
+`nmap --script hostmap-bfk -script-args hostmap-bfk.prefix=hostmap- <URL>` - To discover the hostnames that resolve the targeted domain
+
+`nmap --script http-trace -d <URL>` - To perform an HTTP trace
+
+`nmap -p<Port - ex. 80> --script http-waf-detect <URL>` - To check whether there's a WAF configured
 
 
 ## Cracking FTP Credentials ##
@@ -56,3 +71,9 @@ To perform a Dictionary Attack against an FTP service.
 ``` uniscan -u <URL> -d ``` - The switch _-d_ is to perform a dynamic scan. It can find vulnerabilities like SQL Injection, XSS, RCE, RFI...
 
 In `/usr/share/uniscan/report` there will be the scan report for the URL in an _html_ file.
+
+### Other Web Server Fingerprinting Tools ###
+* SpiderFoot (https://www.spiderfoot.net)
+* httprint (https://www.net-square.com)
+* Winfingerprint (https://qpdownload.com)
+* NetworkMiner (https://www.netresec.com)
