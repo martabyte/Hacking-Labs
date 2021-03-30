@@ -1,7 +1,29 @@
 # Module 19 - Cloud Computing #
 
-## Creating User Accounts and Assigning User Rights ##
+## Perform S3 Bucket Enumeration ##
 
+### lazys3 ###
+
+### S3Scanner ###
+
+
+- - - -
+
+## Exploit S3 Buckets ##
+
+### AWS CLI ###
+
+
+- - - -
+
+## Perform Privilege Escalation ##
+
+### Escalate IAM User Privileges by Exploiting Misconfigured User Policy ###
+
+
+- - - - 
+
+## Creating User Accounts and Assigning User Rights ##
 ### ownCloud ###
 1. Login as Admin into ``` http://localhost/owncloud ``` (There's also a client desktop app).
 2. Right Menu > 'Users'
@@ -19,12 +41,10 @@ In the desktop client app, you can access, copy, add, delete... the files and fo
 - - - -
 
 ## Securing ownCloud from Malicious File Uploads ##
-
 Create the Trojan (``` msfvenom -p windows/meterpreter/reverse_tcp -f exe > <Output Path>/trojan.exe ```) and upload it to ``` http://<Victim IP>/owncloud ```.
 
 ### ClamAV ###
 It will detect the Trojan and stop the upload.
-
 
 
 - - - -
