@@ -64,7 +64,42 @@ It can be found at: `Module 17 Hacking Mobile Platforms\Android Hacking Tools\`.
 
 
 ### Exploit the Android Platform through ADB ###
+Android Debug Bridge (ADB) is a versatile command-line tool that lets you communicate with a device. ADB facilitates a variety of device actions such as installing and debugging apps, and provides access to a Unix shell that you can use to run several different commands on a device. Usually, developers connect to ADB by using a USB cable, but it is also possible to do so wirelessly by enabling a daemon server at port TCP 5555 on the device.
+
+On the Parrot attacker machine: `apt-get install adb`.
+
 #### PhoneSploit ####
+It can be downloaded: `git clone https://github.com/01010000-kumar/PhoneSploit`. Or in Windows at: `Module 17 Hacking Mobile Platforms\GitHub Tools\`. Then, proceed with the installation of dependencies: `python3 -m pip install colorama`. 
+
+`python3 phonesploit.py`
+
+The main menu appears, with options like:
+1) Show connected devices
+2) Disconnect all devices
+3) Connect a new phone
+4) Access Shell on a phone
+5) Install an apk on a phone
+6) Screen record a phone
+7) Screen Shot a picture on the phone
+8) Restart Server
+9) Pull folders from the phone to the pc
+10) Turn the device off
+11) (...)
+
+Steps:
+1. First, we'll connect a new phone by selecting option number 3: `[3] Connect a new phone`.
+2. Enter the phone's IP Address to connect to it via the port 5555
+3. Now, the main menu appears again, let's access the phone's shell: `[4] Access Shell on a phone`.
+4. Enter the phone's IP Address, and then we'll get a shell
+5. We can do whatever further steps we want with the given options
+
+#### Other Android Hacking Tools ####
+* NetCut (http://www.arcai.com)
+* drozer (https://labs.f-secure.com)
+* zANTI (https://www.zimperium.com)
+* Network Spoofer (https://www.digitalsquid.co.uk)
+* DroidSheep (https://droidsheep.info)
+
 
 - - - -
 
@@ -72,14 +107,29 @@ It can be found at: `Module 17 Hacking Mobile Platforms\Android Hacking Tools\`.
 
 ### Analyze a Malicious App ###
 #### Online Android Analyzers ####
+* Sixo Online APK Analyzer (https://sisik.eu/apk-tool)
+* DeGuard
+* AVC UnDroid (https://undroid.av-comparatives.org)
+* SandDroid (http://sanddroid.xjtu.edu.cn)
+* Apktool (http://www.javadecompilers.com)
+* Apprisk Scanner (https://apprisk.newskysecurity.com)
 
-#### Quixxi Vulnerability Scanner ####
+
+### Android App Vulnerability Scanners ###
+* Quixxy Vulnerability Scanner (https://vulnerabilitytest.quixxi.com/)
+* X-Ray (https://duo.com)
+* Vulners Scanner (Google Play Store)
+* Shellshock Vulnerability Scan (Google Play Store)
+* Yaazhini (https://www.vegabird.com)
+* Quick Android Review Kit (QARK - GitHub)
 
 
-### Secure Android Devices ###
+### Secure Android Devices from Malicious Apps ###
 #### Malwarebytes Security ####
+Malwarebytes is an antimalware mobile tool that provides protection against malware, ransomware... It blocks, detects, and removes adware and malware, conducts privacy audits for all apps, and ensures a safer browsing.
 
-
-
-
-
+#### Other Mobile Antivirus Tools ####
+* AntiSpy Mobile (https://antispymobile.com)
+* Spyware Detector - Anti Spy Privacy Scanner (Google Play Store)
+* iAmNotified - Anti Spy System (https://iamnotified.com)
+* Privacy Scanner (AntiSpy) Free (Google Play Store)
