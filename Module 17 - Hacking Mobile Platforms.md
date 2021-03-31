@@ -43,8 +43,7 @@ Open a Terminal in Android.
 ``` su ``` > ``` ip addr add <IP Address with Mask> dev eth0 ``` - To assign the IP Address to the android device
 
 #### Social Engineering Toolkit ####
-
-In the attacker machine launch the Social Engineering Toolkit.
+The SET is an open-source tool that enables penetration testing via social engineering. In the attacker machine: launch the Social Engineering Toolkit.
 
 1. Select ``` 1) Social-Engineering Attacks ```
 2. Select ``` 2) Website Attack Vectors ```
@@ -59,6 +58,9 @@ Now, the attacker should lure the victim to access: ```http://<Attacker IP>```. 
 
 ### Launch a DoS Attack ###
 #### Low Orbital Cannon (LOIC) ####
+It can be found at: `Module 17 Hacking Mobile Platforms\Android Hacking Tools\`. But in this lab, we'll launch it from the Android device: go to the 'Cx File Explorer' app > Click the IP from the shared computer (Ex. 10.10.10.10) > Go to the shared folder: 'CEH-Tools' > 'Module 17 Hacking Mobile Platforms' > 'Android Hacking Tools' > Install the 'LOIC' apk.
+
+1. Type the target IP, select the TCP radio button, set the Port value to 80 and the number of Threads to 100 > 'Start'
 
 
 ### Exploit the Android Platform through ADB ###
